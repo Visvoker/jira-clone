@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { FcGoogle } from "react-icons/fc"
+import Link from "next/link"
 import { FaGithub } from "react-icons/fa"
 
 import {
@@ -23,18 +24,15 @@ import { DottedSeparator } from "@/components/dotted-separator"
 
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import { registerSchema } from "../schema"
+import { useRegister } from "../api/use-register"
 
 
 export const SignUpCard = () => {
-  const formSchema = z.object({
-    name: z.string().trim().min(1, "Require"),
-    email: z.string().email(),
-    password: z.string().min(8, "Minimum of 8 characters required"),
-  })
+  const { mutate } = useRegister();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof registerSchema>>({
+    resolver: zodResolver(registerSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -42,8 +40,9 @@ export const SignUpCard = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values)
+  const onSubmit = (values: z.infer<typeof registerSchema>) => {
+    // mutate(values)
+    mutate(values)
   }
 
   return (

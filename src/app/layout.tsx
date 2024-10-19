@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google"
+import { Inter } from "next/font/google";
+import { QueryProvider } from "../components/query-provider";
+
 
 import { cn } from "@/lib/utils";
 
@@ -19,11 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={cn(inter.className, "antialiased min-h-screen")}
-      >
-        {children}
-      </body>
+      <QueryProvider>
+        <body
+          className={cn(inter.className, "antialiased min-h-screen")}
+        >
+          {children}
+        </body>
+      </QueryProvider>
     </html>
   );
 }
