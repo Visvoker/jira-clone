@@ -29,6 +29,7 @@ export const useLogin = () => {
       toast.success("Logged in")
       router.refresh()
       queryClient.invalidateQueries({ queryKey: ["current"] })
+      queryClient.invalidateQueries({ queryKey: ["workspaces"] })
     },
     onError: () => {
       toast.error("Failed to log in");
