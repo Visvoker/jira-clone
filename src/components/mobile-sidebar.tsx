@@ -15,10 +15,11 @@ export const MobileSidebar = () => {
   useEffect(() => {
     setIsOpen(false);
   }, [pathname])
+
   return (
     <Sheet modal={false} open={isOpen} onOpenChange={setIsOpen} >
       <SheetTrigger asChild>
-        <Button size="icon" variant="secondary" className="lg:hidden">
+        <Button variant="secondary" className="lg:hidden">
           <MenuIcon className="size-4 text-neutral-500" />
         </Button>
       </SheetTrigger>

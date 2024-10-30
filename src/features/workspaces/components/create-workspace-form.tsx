@@ -1,11 +1,17 @@
 "use client"
 
 import { z } from "zod";
+import { useRef } from "react";
+import { ImageIcon } from "lucide-react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import React, { useRef } from "react";
-import Image from "next/image";
 
+import { DottedSeparator } from "@/components/dotted-separator";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
@@ -16,15 +22,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-
-
 import { createWorkspaceSchema } from "../schemas"
-import { DottedSeparator } from "@/components/dotted-separator";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { useCreateWorkspace } from "../api/use-create-workspace";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { ImageIcon } from "lucide-react";
 
 interface CreateWorkspaceFormProps {
   onCancel?: () => void
@@ -33,6 +32,7 @@ interface CreateWorkspaceFormProps {
 export const CreateWorkspaceForm = (
   { onCancel }: CreateWorkspaceFormProps
 ) => {
+  const router = useRouter()
   const { mutate, isPending } = useCreateWorkspace();
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -51,8 +51,9 @@ export const CreateWorkspaceForm = (
     };
 
     mutate({ form: finalValues }, {
-      onSuccess: () => {
+      onSuccess: ({ data }) => {
         form.reset();
+        router.push(`/workspaces/${data.$id}`);
       }
     });
   }
@@ -88,8 +89,8 @@ export const CreateWorkspaceForm = (
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter workspace name"
                         {...field}
+                        placeholder="Enter workspace name"
                       />
                     </FormControl>
                     <FormMessage />
@@ -174,18 +175,18 @@ export const CreateWorkspaceForm = (
               <Button
                 type="button"
                 size="lg"
-                disabled={isPending}
                 variant="secondary"
                 onClick={onCancel}
-              >
-                Cancle
-              </Button>
-              <Button
-                type="submit"
-                size="lg"
                 disabled={isPending}
               >
-                Create workspace
+                Cancel
+              </Button>
+              <Button
+                disabled={isPending}
+                type="submit"
+                size="lg"
+              >
+                Create Workspace
               </Button>
             </div>
           </form>
