@@ -89,7 +89,7 @@ const app = new Hono()
 
       const projects = await databases.listDocuments(
         DATABASE_ID,
-        MEMBERS_ID,
+        PROJECTS_ID,
         [
           Query.equal("workspaceId", workspaceId),
           Query.orderDesc("$createdAt"),
