@@ -1,11 +1,14 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
+import { PencilIcon } from "lucide-react";
 
 import { getCurrent } from "@/features/auth/queries";
 import { getproject } from "@/features/projects/queries";
 import { ProjectAvatar } from "@/features/projects/components/project-avatar";
+import { TaskViewSwitcher } from "@/features/tasks/components/task-view-swithcher";
+
 import { Button } from "@/components/ui/button";
-import { PencilIcon } from "lucide-react";
-import Link from "next/link";
+
 
 interface ProjectIdPageProps {
   params: { projectId: string };
@@ -42,6 +45,9 @@ const ProjectIdPage = async ({
             Edit Project
           </Link>
         </Button>
+      </div>
+      <div>
+        <TaskViewSwitcher />
       </div>
     </div>
   );
