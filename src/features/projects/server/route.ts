@@ -3,7 +3,7 @@ import { Hono } from "hono";
 import { ID, Query } from "node-appwrite";
 import { zValidator } from "@hono/zod-validator";
 
-import { getMember } from "@/features/member/utils";
+import { getMember } from "@/features/members/utils";
 
 import { createProjectSchema, updateProjectSchema } from "../schemas";
 import { sessionMiddleware } from "@/lib/session-middleware";

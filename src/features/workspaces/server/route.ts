@@ -2,13 +2,13 @@ import { Hono } from "hono";
 import { ID, Query } from "node-appwrite";
 import { zValidator } from "@hono/zod-validator";
 
-import { MemberRole } from "@/features/member/types";
+import { MemberRole } from "@/features/members/types";
 
 import { sessionMiddleware } from "@/lib/session-middleware";
 import { DATABASE_ID, IMAGES_BUCKET_ID, MEMBERS_ID, WORKSPACES_ID } from "@/config";
 
 import { generateInviteCode } from "@/lib/utils";
-import { getMember } from "@/features/member/utils";
+import { getMember } from "@/features/members/utils";
 import { z } from "zod";
 
 import { createWorkspaceSchema, updateWorkspaceSchema } from "../schemas";

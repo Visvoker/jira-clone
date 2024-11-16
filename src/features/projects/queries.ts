@@ -1,4 +1,4 @@
-import { getMember } from "@/features/member/utils";
+import { getMember } from "@/features/members/utils";
 
 import { DATABASE_ID, PROJECTS_ID } from "@/config";
 import { createSessionClient } from "@/lib/appwrite";

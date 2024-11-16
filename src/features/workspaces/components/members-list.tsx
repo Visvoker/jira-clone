@@ -9,11 +9,11 @@ import { useConfirm } from "@/hooks/use-confirm";
 import { Separator } from "@/components/ui/separator";
 import { DottedSeparator } from "@/components/dotted-separator";
 
-import { MemberRole } from "@/features/member/types";
-import { useGetMembers } from "@/features/member/api/use-get-members";
-import { MemberAvatar } from "@/features/member/components/member-avatar";
-import { useUpdateMember } from "@/features/member/api/use-update-member";
-import { useDeleteMember } from "@/features/member/api/use-delete-member";
+import { MemberRole } from "@/features/members/types";
+import { useGetMembers } from "@/features/members/api/use-get-members";
+import { MemberAvatar } from "@/features/members/components/member-avatar";
+import { useUpdateMember } from "@/features/members/api/use-update-member";
+import { useDeleteMember } from "@/features/members/api/use-delete-member";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

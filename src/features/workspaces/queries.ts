@@ -1,6 +1,6 @@
 import { Query } from "node-appwrite";
 
-import { getMember } from "@/features/member/utils";
+import { getMember } from "@/features/members/utils";
 import { DATABASE_ID, MEMBERS_ID, WORKSPACES_ID } from "@/config";
 
 import { Workspace } from "./types";
