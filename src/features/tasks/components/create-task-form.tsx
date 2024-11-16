@@ -146,7 +146,7 @@ export const CreateTaskForm = (
               />
               <FormField
                 control={form.control}
-                name="assigneeId"
+                name="status"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
@@ -167,7 +167,7 @@ export const CreateTaskForm = (
                           Backlog
                         </SelectItem>
                         <SelectItem value={TaskStatus.IN_PROGRESS} >
-                          In progress
+                          In Progress
                         </SelectItem>
                         <SelectItem value={TaskStatus.IN_REVIEW} >
                           In Review
@@ -197,7 +197,7 @@ export const CreateTaskForm = (
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select Project" />
+                          <SelectValue placeholder="Select project" />
                         </SelectTrigger>
                       </FormControl>
                       <FormMessage />
