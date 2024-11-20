@@ -1,3 +1,8 @@
+import { useRouter } from "next/navigation";
+import { ExternalLink, PencilIcon, TrashIcon } from "lucide-react";
+
+import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,9 +12,9 @@ import {
 
 import { useConfirm } from "@/hooks/use-confirm";
 
-import { ExternalLink, PencilIcon, TrashIcon } from "lucide-react";
 
 import { useDeleteTask } from "../api/use-delete-task";
+import { useEditTaskModal } from "../hooks/use-edit-task-modal";
 
 interface TaskActionProps {
   id: string;
@@ -18,6 +23,11 @@ interface TaskActionProps {
 }
 
 export const TaskAction = ({ id, projectId, children }: TaskActionProps) => {
+  const workspaceId = useWorkspaceId();
+  const router = useRouter();
+
+  const { open } = useEditTaskModal();
+
 
   const [ConfirmDialog, confirm] = useConfirm(
     "Delete task",
@@ -31,6 +41,14 @@ export const TaskAction = ({ id, projectId, children }: TaskActionProps) => {
     if (!ok) return;
 
     mutate({ param: { taskId: id } })
+  };
+
+  const onOpenTask = () => {
+    router.push(`/workspaces/${workspaceId}/tasks/${id}`)
+  }
+
+  const onOpenProject = () => {
+    router.push(`/workspaces/${workspaceId}/projects/${projectId}`)
   }
 
 
@@ -43,7 +61,7 @@ export const TaskAction = ({ id, projectId, children }: TaskActionProps) => {
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem
-            onClick={() => { }}
+            onClick={onOpenTask}
             disabled={false}
             className="font-medium p-[10px]"
           >
@@ -51,7 +69,7 @@ export const TaskAction = ({ id, projectId, children }: TaskActionProps) => {
             Task Details
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() => { }}
+            onClick={onOpenProject}
             disabled={false}
             className="font-medium p-[10px]"
           >
@@ -59,7 +77,7 @@ export const TaskAction = ({ id, projectId, children }: TaskActionProps) => {
             Open Project
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() => { }}
+            onClick={() => { open(id) }}
             disabled={false}
             className="font-medium p-[10px]"
           >
