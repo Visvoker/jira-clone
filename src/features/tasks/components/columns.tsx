@@ -13,7 +13,7 @@ import { MemberAvatar } from "@/features/members/components/member-avatar";
 
 import { Task } from "../types"
 import { TaskDate } from "./task-date";
-import { TaskAction } from "./task-action";
+import { TaskActions } from "./task-action";
 
 export const columns: ColumnDef<Task>[] = [
   {
@@ -137,11 +137,11 @@ export const columns: ColumnDef<Task>[] = [
       const projectId = row.original.projectId;
 
       return (
-        <TaskAction id={id} projectId={projectId}>
+        <TaskActions id={id} projectId={projectId}>
           <Button variant="ghost" className="size-8 p-0">
             <MoreHorizontal className="size-4" />
           </Button>
-        </TaskAction>
+        </TaskActions>
       )
     }
   }

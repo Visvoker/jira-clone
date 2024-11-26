@@ -7,11 +7,11 @@ import {
   PlusIcon,
 } from "lucide-react";
 
+import { snakeCaseToTitleCase } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 import { TaskStatus } from "../types"
 import { useCreateTaskModal } from "../hooks/use-create-task-modal";
-import { snakeCaseToTitleCase } from "@/lib/utils";
 
 interface KanbanColumnHeaderProps {
   board: TaskStatus;
@@ -23,18 +23,18 @@ const statusIconMap: Record<TaskStatus, React.ReactNode> = {
     <CircleDashedIcon className="size-[18px] text-pink-400" />
   ),
   [TaskStatus.TODO]: (
-    <CircleDashedIcon className="size-[18px] text-red-400" />
+    <CircleIcon className="size-[18px] text-red-400" />
   ),
   [TaskStatus.IN_PROGRESS]: (
-    <CircleDashedIcon className="size-[18px] text-yellow-400" />
+    <CircleDotDashedIcon className="size-[18px] text-yellow-400" />
   ),
   [TaskStatus.IN_REVIEW]: (
-    <CircleDashedIcon className="size-[18px] text-blue-400" />
+    <CircleDotIcon className="size-[18px] text-blue-400" />
   ),
   [TaskStatus.DONE]: (
-    <CircleDashedIcon className="size-[18px] text-emerald-400" />
+    <CircleCheckIcon className="size-[18px] text-emerald-400" />
   ),
-};
+}
 
 export const KanbanColumnHeader = ({
   board,
@@ -55,9 +55,9 @@ export const KanbanColumnHeader = ({
           {taskCount}
         </div>
       </div>
-      <Button onClick={open} variant="ghost" size="icon" className="size-5" >
+      <Button onClick={open} variant="ghost" size="icon" className="size-5">
         <PlusIcon className="size-4 text-neutral-500" />
       </Button>
     </div>
-  )
-}
+  );
+};
