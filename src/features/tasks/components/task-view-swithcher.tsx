@@ -19,11 +19,12 @@ import { columns } from "./columns";
 import { DataTable } from "./data-table";
 import { DataKanban } from "./data-kanban";
 import { DataFilters } from "./data-filters";
+import { DataCalendar } from "./data-calendar";
 
 import { useGetTasks } from "../api/use-get-tasks";
+import { TaskStatus } from "../types";
 import { useTaskFilters } from "../hooks/use-task-filter";
 import { useCreateTaskModal } from "../hooks/use-create-task-modal";
-import { TaskStatus } from "../types";
 import { useBulkUpdateTasks } from "../api/use-bulk-update-tasks";
 
 export const TaskViewSwitcher = () => {
@@ -112,7 +113,7 @@ export const TaskViewSwitcher = () => {
               <DataKanban onChange={onKanbanChange} data={tasks?.documents ?? []} />
             </TabsContent>
             <TabsContent value="calendar" className="mt-0">
-              {JSON.stringify(tasks)}
+              <DataCalendar data={tasks?.documents ?? []} />
             </TabsContent>
           </>
         )}
