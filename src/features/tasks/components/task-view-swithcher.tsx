@@ -28,7 +28,7 @@ import { useCreateTaskModal } from "../hooks/use-create-task-modal";
 import { useBulkUpdateTasks } from "../api/use-bulk-update-tasks";
 
 interface TaskViewSwitcherProps {
-  hideProjectFilter: boolean
+  hideProjectFilter?: boolean
 }
 
 export const TaskViewSwitcher = ({

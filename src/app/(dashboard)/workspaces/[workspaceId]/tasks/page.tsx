@@ -11,7 +11,7 @@ const TasksPage = async () => {
     <div className="h-full flex flex-col">
       <TaskViewSwitcher />;
     </div>
-  )
-}
+  );
+};
 
 export default TasksPage;
