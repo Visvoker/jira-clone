@@ -1,18 +1,18 @@
+import { z } from "zod";
 import { Hono } from "hono";
 import { ID, Query } from "node-appwrite";
 import { zValidator } from "@hono/zod-validator";
 
 import { MemberRole } from "@/features/members/types";
+import { getMember } from "@/features/members/utils";
 
 import { sessionMiddleware } from "@/lib/session-middleware";
+import { generateInviteCode } from "@/lib/utils";
 import { DATABASE_ID, IMAGES_BUCKET_ID, MEMBERS_ID, WORKSPACES_ID } from "@/config";
 
-import { generateInviteCode } from "@/lib/utils";
-import { getMember } from "@/features/members/utils";
-import { z } from "zod";
 
-import { createWorkspaceSchema, updateWorkspaceSchema } from "../schemas";
 import { Workspace } from "../types";
+import { createWorkspaceSchema, updateWorkspaceSchema } from "../schemas";
 
 const app = new Hono()
   .get("/", sessionMiddleware, async (c) => {
@@ -42,15 +42,63 @@ const app = new Hono()
 
     return c.json({ data: workspaces });
   })
+  .get(
+    "/:workspaceId",
+    sessionMiddleware,
+    async (c) => {
+      const user = c.get("user");
+      const databases = c.get("databases");
+      const { workspaceId } = c.req.param();
 
+      const member = getMember({
+        databases,
+        workspaceId,
+        userId: user.$id
+      });
+
+      if (!member) {
+        return c.json({ error: "Unauthorized" }, 401);
+      }
+
+      const workspace = await databases.getDocument<Workspace>(
+        DATABASE_ID,
+        WORKSPACES_ID,
+        workspaceId
+      );
+
+      return c.json({ data: workspace });
+    }
+  )
+  .get(
+    "/:workspaceId/info",
+    sessionMiddleware,
+    async (c) => {
+      const databases = c.get("databases");
+      const { workspaceId } = c.req.param();
+
+      const workspace = await databases.getDocument<Workspace>(
+        DATABASE_ID,
+        WORKSPACES_ID,
+        workspaceId
+      );
+
+      return c.json({
+        data: {
+          $id: workspace.$id,
+          name: workspace.name,
+          imageUrl: workspace.imageUrl,
+        }
+      });
+    }
+  )
   .post(
     "/",
     zValidator("form", createWorkspaceSchema),
     sessionMiddleware,
     async (c) => {
+      const user = c.get("user")
       const databases = c.get("databases");
       const storage = c.get("storage")
-      const user = c.get("user")
 
       const { name, image } = c.req.valid("form")
 
