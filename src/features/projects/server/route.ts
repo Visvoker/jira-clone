@@ -262,7 +262,7 @@ const app = new Hono()
         [
           Query.equal("projectId", projectId),
           Query.greaterThanEqual("$createdAt", thisMonthStart.toISOString()),
-          Query.lessThanEqual("createdAt", thisMonthEnd.toISOString())
+          Query.lessThanEqual("$createdAt", thisMonthEnd.toISOString())
         ]
       );
 
@@ -272,7 +272,7 @@ const app = new Hono()
         [
           Query.equal("projectId", projectId),
           Query.greaterThanEqual("$createdAt", lastMonthStart.toISOString()),
-          Query.lessThanEqual("createdAt", lastMonthEnd.toISOString())
+          Query.lessThanEqual("$createdAt", lastMonthEnd.toISOString())
         ]
       );
 
@@ -286,7 +286,7 @@ const app = new Hono()
           Query.equal("projectId", projectId),
           Query.equal("assigneeId", member.$id),
           Query.greaterThanEqual("$createdAt", lastMonthStart.toISOString()),
-          Query.lessThanEqual("createdAt", lastMonthEnd.toISOString())
+          Query.lessThanEqual("$createdAt", lastMonthEnd.toISOString())
         ]
       );
 
@@ -297,7 +297,7 @@ const app = new Hono()
           Query.equal("projectId", projectId),
           Query.equal("assigneeId", member.$id),
           Query.greaterThanEqual("$createdAt", lastMonthStart.toISOString()),
-          Query.lessThanEqual("createdAt", lastMonthEnd.toISOString())
+          Query.lessThanEqual("$createdAt", lastMonthEnd.toISOString())
         ]
       );
 
@@ -311,7 +311,7 @@ const app = new Hono()
         [
           Query.equal("projectId", projectId),
           Query.notEqual("status", TaskStatus.DONE),
-          Query.greaterThanEqual("createdAt", thisMonthStart.toISOString()),
+          Query.greaterThanEqual("$createdAt", thisMonthStart.toISOString()),
           Query.lessThanEqual("$createdAt", thisMonthEnd.toISOString())
         ]
       );
@@ -322,7 +322,7 @@ const app = new Hono()
         [
           Query.equal("projectId", projectId),
           Query.notEqual("status", TaskStatus.DONE),
-          Query.greaterThanEqual("createdAt", lastMonthStart.toISOString()),
+          Query.greaterThanEqual("$createdAt", lastMonthStart.toISOString()),
           Query.lessThanEqual("$createdAt", lastMonthEnd.toISOString())
         ]
       );
@@ -336,7 +336,7 @@ const app = new Hono()
         [
           Query.equal("projectId", projectId),
           Query.equal("status", TaskStatus.DONE),
-          Query.greaterThanEqual("createdAt", thisMonthStart.toISOString()),
+          Query.greaterThanEqual("$createdAt", thisMonthStart.toISOString()),
           Query.lessThanEqual("$createdAt", thisMonthEnd.toISOString())
         ]
       );
@@ -347,7 +347,7 @@ const app = new Hono()
         [
           Query.equal("projectId", projectId),
           Query.equal("status", TaskStatus.DONE),
-          Query.greaterThanEqual("createdAt", lastMonthStart.toISOString()),
+          Query.greaterThanEqual("$createdAt", lastMonthStart.toISOString()),
           Query.lessThanEqual("$createdAt", lastMonthEnd.toISOString())
         ]
       );
@@ -362,8 +362,8 @@ const app = new Hono()
           Query.equal("projectId", projectId),
           Query.notEqual("status", TaskStatus.DONE),
           Query.lessThan("dueDate", now.toISOString()),
-          Query.greaterThanEqual("createdAt", thisMonthStart.toISOString()),
-          Query.lessThanEqual("createdAt", thisMonthEnd.toISOString()),
+          Query.greaterThanEqual("$createdAt", thisMonthStart.toISOString()),
+          Query.lessThanEqual("$createdAt", thisMonthEnd.toISOString()),
         ]
       );
 
@@ -374,8 +374,8 @@ const app = new Hono()
           Query.equal("projectId", projectId),
           Query.notEqual("status", TaskStatus.DONE),
           Query.lessThan("dueDate", now.toISOString()),
-          Query.greaterThanEqual("createdAt", thisMonthStart.toISOString()),
-          Query.lessThanEqual("createdAt", thisMonthEnd.toISOString()),
+          Query.greaterThanEqual("$createdAt", thisMonthStart.toISOString()),
+          Query.lessThanEqual("$createdAt", thisMonthEnd.toISOString()),
         ]
       );
 

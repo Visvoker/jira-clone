@@ -1,27 +1,31 @@
 import { PencilIcon } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { TaskDate } from "../components/task-date";
-import { DottedSeparator } from "@/components/dotted-separator";
-import { OverviewProperty } from "../components/overview-property";
-
 import { MemberAvatar } from "@/features/members/components/member-avatar";
 
-import { Task } from "../types"
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { snakeCaseToTitleCase } from "@/lib/utils";
+import { DottedSeparator } from "@/components/dotted-separator";
+
+import { TaskDate } from "./task-date";
+import { OverviewProperty } from "./overview-property";
+
+import { Task } from "../types"
+import { useEditTaskModal } from "../hooks/use-edit-task-modal";
 
 interface TaskOverviewProps {
   task: Task;
 }
 
 export const TaskOverview = ({ task }: TaskOverviewProps) => {
+  const { open } = useEditTaskModal();
+
   return (
     <div className="flex flex-col gap-y-4 col-span-1">
       <div className="bg-muted rounded-lg p-4">
         <div className="flex items-center justify-between">
-          <p>Overview</p>
-          <Button size="sm" variant="secondary">
+          <p className="text-lg font-semibold">Overview</p>
+          <Button size="sm" variant="secondary" onClick={() => { open(task.$id) }}>
             <PencilIcon className="size-4 mr-2" />
             Edit
           </Button>
