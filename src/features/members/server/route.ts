@@ -3,11 +3,12 @@ import { Hono } from "hono";
 import { Query } from "node-appwrite";
 import { zValidator } from "@hono/zod-validator";
 
-import { sessionMiddleware } from "@/lib/session-middleware";
-import { createAdminClient } from "@/lib/appwrite";
-import { getMember } from "../utils";
 import { DATABASE_ID, MEMBERS_ID } from "@/config";
-import { MemberRole } from "../types";
+import { createAdminClient } from "@/lib/appwrite";
+import { sessionMiddleware } from "@/lib/session-middleware";
+
+import { getMember } from "../utils";
+import { member, MemberRole } from "../types";
 
 
 const app = new Hono()
@@ -31,7 +32,7 @@ const app = new Hono()
         return c.json({ error: "Unauthorized" }, 401)
       }
 
-      const members = await databases.listDocuments(
+      const members = await databases.listDocuments<member>(
         DATABASE_ID,
         MEMBERS_ID,
         [Query.equal("workspaceId", workspaceId)]
