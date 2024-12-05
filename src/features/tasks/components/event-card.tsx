@@ -2,15 +2,18 @@ import { Project } from "@/features/projects/types";
 import { MemberAvatar } from "@/features/members/components/member-avatar";
 import { ProjectAvatar } from "@/features/projects/components/project-avatar";
 
+import { useRouter } from "next/navigation";
+
+import { member } from "@/features/members/types";
+import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
+
 import { cn } from "@/lib/utils";
 
 import { TaskStatus } from "../types";
-import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
-import { useRouter } from "next/navigation";
 
 interface EventCard {
   title: string;
-  assignee: any;
+  assignee: member;
   project: Project;
   status: TaskStatus;
   id: string;

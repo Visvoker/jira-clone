@@ -9,7 +9,7 @@ import { getMember } from "@/features/members/utils";
 import { TaskStatus } from "@/features/tasks/types";
 
 import { sessionMiddleware } from "@/lib/session-middleware";
-import { DATABASE_ID, IMAGES_BUCKET_ID, MEMBERS_ID, PROJECTS_ID, TASKS_ID } from "@/config";
+import { DATABASE_ID, IMAGES_BUCKET_ID, PROJECTS_ID, TASKS_ID } from "@/config";
 
 import { Project } from "../types";
 import { createProjectSchema, updateProjectSchema } from "../schemas";

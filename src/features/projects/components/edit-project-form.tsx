@@ -2,8 +2,7 @@
 
 import { z } from "zod";
 import { useRef } from "react";
-import { ArrowLeftIcon, CopyIcon, ImageIcon } from "lucide-react";
-import { toast } from "sonner";
+import { ArrowLeftIcon, ImageIcon } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -245,7 +244,7 @@ export const EditProjectForm = (
               size="sm"
               variant="destructive"
               type="button"
-              disabled={isPending}
+              disabled={isDeleteingProject}
               onClick={handleDelete}
             >
               Delete Project

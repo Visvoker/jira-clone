@@ -14,7 +14,6 @@ import {
 import { FolderIcon, ListCheckIcon, UserIcon } from "lucide-react";
 import { TaskStatus } from "../types";
 import { useTaskFilters } from "../hooks/use-task-filter";
-import { date } from "zod";
 
 interface DataFiltersProps {
   hideProjectFilter?: boolean;

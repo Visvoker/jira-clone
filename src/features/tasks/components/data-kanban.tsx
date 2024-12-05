@@ -11,7 +11,6 @@ import { KanbanColumnHeader } from "./kanban-column-header";
 
 import { Task, TaskStatus } from "../types";
 import { KanbanCard } from "./kanban-card";
-import { string } from "zod";
 
 const boards: TaskStatus[] = [
   TaskStatus.BACKLOG,
