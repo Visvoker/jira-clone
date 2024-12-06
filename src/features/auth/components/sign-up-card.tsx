@@ -21,10 +21,13 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form"
-import { DottedSeparator } from "@/components/dotted-separator"
-
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+
+import { DottedSeparator } from "@/components/dotted-separator"
+
+import { signUpWithGithub, signUpWithGoogle } from "@/lib/oauth"
+
 import { registerSchema } from "../schema"
 import { useRegister } from "../api/use-register"
 
@@ -128,7 +131,7 @@ export const SignUpCard = () => {
       </div>
       <CardContent className="p-7 flex flex-col gap-y-4">
         <Button
-          onClick={() => { }}
+          onClick={() => signUpWithGoogle()}
           disabled={isPending}
           variant="secondary"
           size="lg"
@@ -138,7 +141,7 @@ export const SignUpCard = () => {
           Login with Google
         </Button>
         <Button
-          onClick={() => { }}
+          onClick={() => signUpWithGithub()}
           disabled={isPending}
           variant="secondary"
           size="lg"
