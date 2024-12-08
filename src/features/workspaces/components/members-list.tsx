@@ -1,8 +1,7 @@
 "use client";
 import Link from "next/link";
 import { Fragment } from "react";
-import { ArrowLeftIcon, MoreVerticalIcon } from "lucide-react";
-
+import { ArrowLeftIcon, CrownIcon, MoreVerticalIcon, UserIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button";
 import { useConfirm } from "@/hooks/use-confirm";
@@ -87,7 +86,13 @@ export const MembersList = () => {
                 name={member.name}
               />
               <div className="flex flex-col">
-                <p className="text-sm font-medium">{member.name}</p>
+                <div className="flex items-center">
+                  <p className="text-sm font-medium">{member.name}</p>
+                  {member.role === "ADMIN"
+                    ? <CrownIcon className="size-4 ml-1" />
+                    : <UserIcon className="size-4 ml-1" />
+                  }
+                </div>
                 <p className="text-xs text-muted-foreground">{member.email}</p>
               </div>
               <DropdownMenu>
