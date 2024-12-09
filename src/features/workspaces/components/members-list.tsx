@@ -45,7 +45,12 @@ export const MembersList = () => {
     updateMember({
       json: { role },
       param: { memberId },
-    });
+    }, {
+      onSuccess: () => {
+        window.location.reload()
+      }
+    }
+    );
   };
 
   const handleDeleteMember = async (memberId: string) => {
